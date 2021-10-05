@@ -66,8 +66,8 @@ fi
 if [[ $1 = "k9s" ]]; then
   do_all_nodes "cd /tmp ; \
   curl -LO https://github.com/derailed/k9s/releases/download/${K9S_VERSION}/k9s_Linux_x86_64.tar.gz ; \
-  tar xvfz k9s_Linux_x86_64.tar.gz \
-  sudo mv k9s /usr/local/bin \
+  tar xvfz k9s_Linux_x86_64.tar.gz ; \
+  sudo mv k9s /usr/local/bin ; \
   rm k9s_Linux_x86_64.tar.gz"
   exit 0
 fi
