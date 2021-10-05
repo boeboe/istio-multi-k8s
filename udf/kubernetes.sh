@@ -36,7 +36,7 @@ function do_all_k8s_nodes {
   done
 }
 
-if [[ $1 = "install_cluster_1" ]]; then
+if [[ $1 = "install_cluster1" ]]; then
   docker pull quay.io/kubespray/kubespray:${KUBESPRAY_VERSION}
   docker run --rm -it --mount type=bind,source=${INVENTORY_DIR_1},dst=/inventory \
     --mount type=bind,source="${HOME}"/.ssh/id_rsa,dst=/root/.ssh/id_rsa \
@@ -45,7 +45,7 @@ if [[ $1 = "install_cluster_1" ]]; then
   exit 0
 fi
 
-if [[ $1 = "install_cluster_2" ]]; then
+if [[ $1 = "install_cluster2" ]]; then
   docker pull quay.io/kubespray/kubespray:${KUBESPRAY_VERSION}
   docker run --rm -it --mount type=bind,source=${INVENTORY_DIR_2},dst=/inventory \
     --mount type=bind,source="${HOME}"/.ssh/id_rsa,dst=/root/.ssh/id_rsa \
@@ -54,7 +54,7 @@ if [[ $1 = "install_cluster_2" ]]; then
   exit 0
 fi
 
-if [[ $1 = "install_cluster_3" ]]; then
+if [[ $1 = "install_cluster3" ]]; then
   docker pull quay.io/kubespray/kubespray:${KUBESPRAY_VERSION}
   docker run --rm -it --mount type=bind,source=${INVENTORY_DIR_3},dst=/inventory \
     --mount type=bind,source="${HOME}"/.ssh/id_rsa,dst=/root/.ssh/id_rsa \
@@ -101,20 +101,32 @@ if [[ $1 = "kubectl" ]]; then
   exit 0
 fi
 
-if [[ $1 = "update" ]]; then
-  cd ${KUBESPRAY_DIR}
-  sudo pip3 install -r requirements.txt
-  ansible-playbook -i ${INVENTORY_DIR}/hosts.yaml  --become --become-user=root -e kube_version=${K8S_VERSION} -e upgrade_cluster_setup=true cluster.yml
+if [[ $1 = "remove_cluster1" ]]; then
+  docker pull quay.io/kubespray/kubespray:${KUBESPRAY_VERSION}
+  docker run --rm -it --mount type=bind,source=${INVENTORY_DIR_1},dst=/inventory \
+    --mount type=bind,source="${HOME}"/.ssh/id_rsa,dst=/root/.ssh/id_rsa \
+    quay.io/kubespray/kubespray:${KUBESPRAY_VERSION} bash -c  \
+    "ansible-playbook -i /inventory/inventory.ini --private-key /root/.ssh/id_rsa --become --become-user=root reset.yml"
   exit 0
 fi
 
-if [[ $1 = "remove" ]]; then
-  cd ${KUBESPRAY_DIR}
-  sudo pip3 install -r requirements.txt
-  ansible-playbook -i ${INVENTORY_DIR}/hosts.yaml --become --become-user=root reset.yml 
+if [[ $1 = "remove_cluster2" ]]; then
+  docker pull quay.io/kubespray/kubespray:${KUBESPRAY_VERSION}
+  docker run --rm -it --mount type=bind,source=${INVENTORY_DIR_2},dst=/inventory \
+    --mount type=bind,source="${HOME}"/.ssh/id_rsa,dst=/root/.ssh/id_rsa \
+    quay.io/kubespray/kubespray:${KUBESPRAY_VERSION} bash -c  \
+    "ansible-playbook -i /inventory/inventory.ini --private-key /root/.ssh/id_rsa --become --become-user=root reset.yml"
   exit 0
 fi
 
+if [[ $1 = "remove_cluster3" ]]; then
+  docker pull quay.io/kubespray/kubespray:${KUBESPRAY_VERSION}
+  docker run --rm -it --mount type=bind,source=${INVENTORY_DIR_3},dst=/inventory \
+    --mount type=bind,source="${HOME}"/.ssh/id_rsa,dst=/root/.ssh/id_rsa \
+    quay.io/kubespray/kubespray:${KUBESPRAY_VERSION} bash -c  \
+    "ansible-playbook -i /inventory/inventory.ini --private-key /root/.ssh/id_rsa --become --become-user=root reset.yml"
+  exit 0
+fi
 
-echo "please specify action ./kubernetes.sh install/k9s/kubeconfig/kubectl/update/remove"
+echo "please specify action ./kubernetes.sh install_cluster1/install_cluster2/install_cluster3/k9s/kubeconfig/kubectl/remove_cluster1/remove_cluster2/remove_cluster3"
 exit 1
