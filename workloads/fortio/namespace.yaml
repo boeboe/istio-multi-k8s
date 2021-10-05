@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: fortio
+  labels:
+    name: fortio
+    istio-injection: enabled
+---

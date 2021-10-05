@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fortio-client
+  namespace: fortio
+  labels:
+    app: fortio-client
+spec:
+  ports:
+  - port: 8080
+    name: http
+    targetPort: http-fortio
+  selector:
+    app: fortio-client

@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fortio-server
+  namespace: fortio
+  labels:
+    app: fortio-server
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: fortio-server
+  template:
+    metadata:
+      labels:
+        app: fortio-server
+      annotations:
+        traffic.sidecar.istio.io/excludeInboundPorts: "15091"
+        # ad.datadoghq.com/fortio.check_names: '["openmetrics"]'
+        # ad.datadoghq.com/fortio.init_configs: '[{}]'
+        # ad.datadoghq.com/fortio.instances: '[{"prometheus_url": "http://%%host%%:15090/stats/prometheus","namespace": "fortio-server","metrics": ["*"], "max_returned_metrics": 15000}]'
+    spec:
+      serviceAccountName: fortio-server
+      containers:
+        - name: fortio
+          image: fortio/fortio:latest_release
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: http-fortio
+          volumeMounts:
+            - name: fortio-server-storage
+              mountPath: /var/lib/fortio
+          resources:
+            limits:
+              cpu: "2"
+              memory: 1Gi
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - fortio-server
+            topologyKey: kubernetes.io/hostname
+      volumes:
+        - name: fortio-server-storage
+          emptyDir: {}

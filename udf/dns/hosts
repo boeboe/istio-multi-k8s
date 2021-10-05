@@ -1,0 +1,35 @@
+127.0.0.1 localhost jumphost
+
+# The following lines are desirable for IPv6 capable hosts
+::1 ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+
+# DNSMasq entries for UDF nodes
+10.1.1.4 jumphost
+10.1.1.5 master
+10.1.1.6 node1
+10.1.1.7 node2
+10.1.1.8 node3
+10.1.1.9 node4
+
+# DNSMasq entries for cluster services (exposed through metallb)
+10.1.1.4  gogs
+10.1.1.5  k8s-apiserver
+10.1.1.50 istio-ingressgateway
+10.1.1.51 aspen-mesh-dashboard
+10.1.1.52 aspen-mesh-prometheus
+10.1.1.53 aspen-mesh-jaeger
+
+# DNSMasq entries for Istio workloads (exposed through the istio-ingressgateway)
+10.1.1.50 httpbin-01
+10.1.1.50 httpbin-02
+10.1.1.50 httpbin-03
+10.1.1.50 helloworld-03
+10.1.1.50 httpbin-04
+10.1.1.50 nginx-05
+10.1.1.50 bookinfo
+10.1.1.50 boutique
