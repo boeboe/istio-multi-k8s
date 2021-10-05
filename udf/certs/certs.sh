@@ -4,12 +4,22 @@ ROOT_DIR=$(pwd)
 DOMAIN=aspendemo.org
 
 if [[ $1 = "root-ca" ]]; then
-  make -f ../../../aspenmesh/aspenmesh-1.9.1-am1/tools/certs/Makefile.selfsigned.mk root-ca 
+  make -f Makefile.selfsigned.mk root-ca 
 	exit 0
 fi
 
-if [[ $1 = "cluster" ]]; then
-  make -f ../../../aspenmesh/aspenmesh-1.9.1-am1/tools/certs/Makefile.selfsigned.mk demo-cacerts
+if [[ $1 = "cluster1" ]]; then
+  make -f Makefile.selfsigned.mk cluster1-cacerts
+	exit 0
+fi
+
+if [[ $1 = "cluster2" ]]; then
+  make -f Makefile.selfsigned.mk cluster2-cacerts
+	exit 0
+fi
+
+if [[ $1 = "cluster3" ]]; then
+  make -f Makefile.selfsigned.mk cluster3-cacerts
 	exit 0
 fi
 
@@ -33,8 +43,18 @@ if [[ $1 = "print-root-ca" ]]; then
 	exit 0
 fi
 
-if [[ $1 = "print-cluster" ]]; then
-  openssl x509 -in ./demo/ca-cert.pem -text
+if [[ $1 = "print-cluster1" ]]; then
+  openssl x509 -in ./cluster1/ca-cert.pem -text
+	exit 0
+fi
+
+if [[ $1 = "print-cluster2" ]]; then
+  openssl x509 -in ./cluster2/ca-cert.pem -text
+	exit 0
+fi
+
+if [[ $1 = "print-cluster3" ]]; then
+  openssl x509 -in ./cluster3/ca-cert.pem -text
 	exit 0
 fi
 
@@ -49,5 +69,5 @@ if [[ $1 = "print-client" ]]; then
 	exit 0
 fi
 
-echo "please specify action ./certs.sh root-ca/cluster/wildcard/client/print-root-ca/print-cluster/print-wildcard/print-client"
+echo "please specify action ./certs.sh root-ca/cluster1/cluster2/cluster3/wildcard/client/print-root-ca/print-cluster1/print-cluster2/print-cluster3/print-wildcard/print-client"
 exit 1

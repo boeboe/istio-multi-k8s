@@ -3,14 +3,14 @@ set -o xtrace
 
 ROOT_DIR=$(pwd)
 
-GIT_REPO=https://github.com/CloudDevOpsEMEA/udf-aspenmesh-k8s
+GIT_REPO=https://github.com/CloudDevOpsEMEA/udf-istio-multi-k8s
 
 HOME_DIR=/home/ubuntu
-REPO_DIR=${HOME_DIR}/udf-aspenmesh-k8s
+REPO_DIR=${HOME_DIR}/udf-istio-multi-k8s
 CERT_DIR=${REPO_DIR}/udf/certs
 
-NODES=( jumphost master node1 node2 node3 node4 )
-K8S_NODES=( master node1 node2 node3 node4 )
+NODES=( jumphost master1 node1 master2 node2 master3 node3 )
+K8S_NODES=( master1 node1 master2 node2 master3 node3 )
 
 
 function do_nodes {
