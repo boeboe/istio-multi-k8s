@@ -10,41 +10,65 @@ INVENTORY_DIR_1=${ROOT_DIR}/udf/kubespray/inventory/cluster1
 INVENTORY_DIR_2=${ROOT_DIR}/udf/kubespray/inventory/cluster2
 INVENTORY_DIR_3=${ROOT_DIR}/udf/kubespray/inventory/cluster3
 
-KUBECONF_NODES=( jumphost node1 node2 node3 node4 )
+ALL_NODES=( jumphost master1 node1 master2 node2 master3 node3 )
+ALL_K8S_NODES=( master1 node1 master2 node2 master3 node3 )
+ALL_K8S_1_NODES=( master1 node1 )
+ALL_K8S_2_NODES=( master2 node2 )
+ALL_K8S_3_NODES=( master3 node3 )
 
 HOME_DIR=/home/ubuntu
 REPO_DIR=${HOME_DIR}/udf-aspenmesh-k8s
 KUBECONF=${REPO_DIR}/udf/kubespray/kubeconfig.yaml
 
-function do_nodes {
-  for node in "${KUBECONF_NODES[@]}"
+function do_all_nodes {
+  for node in "${ALL_NODES[@]}"
   do
     echo ${node} "${1} > /dev/null"
     ssh ${node} "${1} > /dev/null"
   done
 }
 
-if [[ $1 = "install" ]]; then
+function do_all_k8s_nodes {
+  for node in "${ALL_K8S_NODES[@]}"
+  do
+    echo ${node} "${1} > /dev/null"
+    ssh ${node} "${1} > /dev/null"
+  done
+}
+
+if [[ $1 = "install_cluster_1" ]]; then
   docker pull quay.io/kubespray/kubespray:${KUBESPRAY_VERSION}
   docker run --rm -it --mount type=bind,source=${INVENTORY_DIR_1},dst=/inventory \
     --mount type=bind,source="${HOME}"/.ssh/id_rsa,dst=/root/.ssh/id_rsa \
     quay.io/kubespray/kubespray:v2.16.0 bash -c \
     ansible-playbook -i /inventory/inventory.ini --private-key /root/.ssh/id_rsa cluster.yml
+  exit 0
+fi
 
+if [[ $1 = "install_cluster_2" ]]; then
+  docker pull quay.io/kubespray/kubespray:${KUBESPRAY_VERSION}
+  docker run --rm -it --mount type=bind,source=${INVENTORY_DIR_2},dst=/inventory \
+    --mount type=bind,source="${HOME}"/.ssh/id_rsa,dst=/root/.ssh/id_rsa \
+    quay.io/kubespray/kubespray:v2.16.0 bash -c \
+    ansible-playbook -i /inventory/inventory.ini --private-key /root/.ssh/id_rsa cluster.yml
+  exit 0
+fi
 
-
-  cd ${KUBESPRAY_DIR}
-  sudo pip3 install -r requirements.txt
-  ansible-playbook -i ${INVENTORY_DIR}/hosts.yaml  --become --become-user=root cluster.yml
+if [[ $1 = "install_cluster_3" ]]; then
+  docker pull quay.io/kubespray/kubespray:${KUBESPRAY_VERSION}
+  docker run --rm -it --mount type=bind,source=${INVENTORY_DIR_3},dst=/inventory \
+    --mount type=bind,source="${HOME}"/.ssh/id_rsa,dst=/root/.ssh/id_rsa \
+    quay.io/kubespray/kubespray:v2.16.0 bash -c \
+    ansible-playbook -i /inventory/inventory.ini --private-key /root/.ssh/id_rsa cluster.yml
   exit 0
 fi
 
 if [[ $1 = "k9s" ]]; then
-  cd /tmp
-  curl -LO "https://github.com/derailed/k9s/releases/download/${K9S_VERSION}/k9s_Linux_x86_64.tar.gz"
-  tar xvfz k9s_Linux_x86_64.tar.gz
-  sudo mv k9s /usr/local/bin
-  rm k9s_Linux_x86_64.tar.gz
+  do_all_nodes "cd /tmp ; \
+  curl -LO https://github.com/derailed/k9s/releases/download/${K9S_VERSION}/k9s_Linux_x86_64.tar.gz ; \
+  tar xvfz k9s_Linux_x86_64.tar.gz \
+  sudo mv k9s /usr/local/bin \
+  rm k9s_Linux_x86_64.tar.gz"
   exit 0
 fi
 
