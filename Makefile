@@ -9,8 +9,12 @@ help: ## This help
 .DEFAULT_GOAL := help
 
 
-kubernetes_install: ## Install clean Kubernetes
-	./udf/kubernetes.sh install
+kubernetes_install_cluster1: ## Install clean Kubernetes Cluster 1
+	./udf/kubernetes.sh install_cluster_1
+kubernetes_install_cluster2: ## Install clean Kubernetes Cluster 2
+	./udf/kubernetes.sh install_cluster_2
+kubernetes_install_cluster3: ## Install clean Kubernetes Cluster 3
+	./udf/kubernetes.sh install_cluster_3
 
 kubernetes_k9s: ## Install k9s
 	./udf/kubernetes.sh k9s
