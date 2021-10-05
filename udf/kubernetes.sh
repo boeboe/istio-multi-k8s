@@ -73,7 +73,7 @@ if [[ $1 = "k9s" ]]; then
 fi
 
 if [[ $1 = "kubeconfig" ]]; then
-  ssh master1 "mkdir -p ${HOME_DIR}/.kube ; sudo cp /etc/kubernetes/admin.conf ${HOME_DIR}/.kube/config ; chmod -R 600 ${HOME_DIR}/.kube"
+  ssh master1 "mkdir -p ${HOME_DIR}/.kube ; sudo cp /etc/kubernetes/admin.conf ${HOME_DIR}/.kube/config ; chmod -R 600 ${HOME_DIR}/.kube ; chown -R ubuntu:ubuntu ${HOME_DIR}/.kube"
   scp master1:${HOME_DIR}/.kube/config /tmp/config1
   ssh node1 "mkdir -p ${HOME_DIR}/.kube"
   scp /tmp/config1 node1:${HOME_DIR}/.kube/config
