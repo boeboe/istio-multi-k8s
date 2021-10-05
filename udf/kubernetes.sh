@@ -41,7 +41,7 @@ if [[ $1 = "install_cluster_1" ]]; then
   docker run --rm -it --mount type=bind,source=${INVENTORY_DIR_1},dst=/inventory \
     --mount type=bind,source="${HOME}"/.ssh/id_rsa,dst=/root/.ssh/id_rsa \
     quay.io/kubespray/kubespray:v2.16.0 bash -c  \
-    "ansible-playbook -i /inventory/inventory.ini --private-key /root/.ssh/id_rsa cluster.yml"
+    "ansible-playbook -i /inventory/inventory.ini --private-key /root/.ssh/id_rsa --become --become-user=root cluster.yml"
   exit 0
 fi
 
