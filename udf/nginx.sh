@@ -8,7 +8,7 @@ NGINX_CONF_DIR=${ROOT_DIR}/udf/nginx
 
 if [[ $1 = "jumphost" ]]; then
   sudo rm -rf /etc/nginx/conf.d/*.conf
-  sudo cp ${NGINX_CONF_DIR}/jumphost/3*.conf /etc/nginx/conf.d/
+  sudo cp ${NGINX_CONF_DIR}/jumphost/*-*.conf /etc/nginx/conf.d/
   sudo cp ${NGINX_CONF_DIR}/jumphost/nginx.conf /etc/nginx/nginx.conf
   sudo systemctl enable nginx.service
   sudo systemctl restart nginx.service
