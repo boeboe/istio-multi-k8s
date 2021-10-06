@@ -26,7 +26,7 @@ fi
 if [[ $1 = "wildcard" ]]; then
   mkdir -p ./wildcard
   openssl req -out ./wildcard/${DOMAIN}.csr -newkey rsa:4096 -sha512 -nodes -keyout ./wildcard/${DOMAIN}.key -subj "/CN=*.${DOMAIN}/O=Istio"
-  openssl x509 -req -sha512 -days 3650 -CA ./root-cert.pem -CAkey ./root-key.pem -set_serial 0 -in ./wildcard/${DOMAIN}.csr -out ./wildcard/${DOMAIN}.pem -extfile <(printf "subjectAltName=DNS:${DOMAIN},DNS:*.${DOMAIN}")
+  openssl x509 -req -sha512 -days 3650 -CA ./root-cert.pem -CAkey ./root-key.pem -set_serial 0 -in ./wildcard/${DOMAIN}.csr -out ./wildcard/${DOMAIN}.pem -extfile <(printf "subjectAltName=DNS:${DOMAIN},DNS:*.${DOMAIN},DNS:localhost")
   cat ./wildcard/${DOMAIN}.pem ./root-cert.pem >> ./wildcard/${DOMAIN}-bundle.pem
 	exit 0
 fi
