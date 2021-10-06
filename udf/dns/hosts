@@ -9,27 +9,34 @@ ff02::2 ip6-allrouters
 ff02::3 ip6-allhosts
 
 # DNSMasq entries for UDF nodes
-10.1.1.4 jumphost
-10.1.1.5 master
-10.1.1.6 node1
-10.1.1.7 node2
-10.1.1.8 node3
-10.1.1.9 node4
+10.1.1.4  jumphost
+10.1.1.5  master1
+10.1.1.6  node11
+10.1.1.7  node12
+10.1.1.8  master2
+10.1.1.9  node21
+10.1.1.10 node22
+10.1.1.11 vm1
+10.1.1.12 vm2
 
 # DNSMasq entries for cluster services (exposed through metallb)
-10.1.1.4  gogs
-10.1.1.5  k8s-apiserver
-10.1.1.50 istio-ingressgateway
-10.1.1.51 aspen-mesh-dashboard
-10.1.1.52 aspen-mesh-prometheus
-10.1.1.53 aspen-mesh-jaeger
+10.1.1.4   gogs
+10.1.1.5   apiserver1
+10.1.1.5   apiserver.cluster1
+10.1.1.8   apiserver2
+10.1.1.8   apiserver.cluster2
+10.1.1.50  istio-igw1
+10.1.1.50  istio-igw.cluster1
+10.1.1.100 istio-igw2
+10.1.1.100 istio-igw.cluster2
+
 
 # DNSMasq entries for Istio workloads (exposed through the istio-ingressgateway)
-10.1.1.50 httpbin-01
-10.1.1.50 httpbin-02
-10.1.1.50 httpbin-03
-10.1.1.50 helloworld-03
-10.1.1.50 httpbin-04
-10.1.1.50 nginx-05
-10.1.1.50 bookinfo
-10.1.1.50 boutique
+# 10.1.1.50 httpbin-01
+# 10.1.1.50 httpbin-02
+# 10.1.1.50 httpbin-03
+# 10.1.1.50 helloworld-03
+# 10.1.1.50 httpbin-04
+# 10.1.1.50 nginx-05
+# 10.1.1.50 bookinfo
+# 10.1.1.50 boutique
