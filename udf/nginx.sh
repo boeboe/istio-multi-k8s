@@ -8,6 +8,7 @@ NGINX_CONF_DIR=${ROOT_DIR}/udf/nginx
 
 if [[ $1 = "install" ]]; then
   sudo cp ${NGINX_CONF_DIR}/nginx.list /etc/apt/sources.list.d/nginx.list
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABF5BD827BD9BF62
   sudo apt-get update
   sudo apt-get -y install nginx
   sudo systemctl enable nginx.service
