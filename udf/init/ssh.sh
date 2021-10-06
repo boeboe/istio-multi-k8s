@@ -9,7 +9,7 @@ sudo chmod 600 /home/ubuntu/.ssh/id_rsa
 sudo chmod 644 /home/ubuntu/.ssh/id_rsa.pub
 
 echo "Disable ssh strict host key checking"
-tee -a ~/.ssh/config << END
+sudo tee -a ~/.ssh/config << END
 Host *
     StrictHostKeyChecking no
 END
