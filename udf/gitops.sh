@@ -6,7 +6,7 @@ ROOT_DIR=$(pwd)
 DOMAIN=aspendemo.org
 
 HOME_DIR=/home/ubuntu
-REPO_DIR=${HOME_DIR}/udf-aspenmesh-k8s
+REPO_DIR=${HOME_DIR}/udf-istio-multi-k8s
 CERT_DIR=${REPO_DIR}/udf/certs
 GOGS_DIR=${REPO_DIR}/udf/gogs
 
