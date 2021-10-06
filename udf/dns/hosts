@@ -25,10 +25,14 @@ ff02::3 ip6-allhosts
 10.1.1.5   apiserver.cluster1
 10.1.1.8   apiserver2
 10.1.1.8   apiserver.cluster2
-10.1.1.50  istio-igw1
-10.1.1.50  istio-igw.cluster1
-10.1.1.100 istio-igw2
-10.1.1.100 istio-igw.cluster2
+10.1.1.50  argocd1
+10.1.1.50  argocd.cluster1
+10.1.1.51  istio-igw1
+10.1.1.51  istio-igw.cluster1
+10.1.1.100 argocd2
+10.1.1.100 argocd.cluster2
+10.1.1.101 istio-igw2
+10.1.1.101 istio-igw.cluster2
 
 
 # DNSMasq entries for Istio workloads (exposed through the istio-ingressgateway)
