@@ -9,8 +9,8 @@ HOME_DIR=/home/ubuntu
 REPO_DIR=${HOME_DIR}/udf-istio-multi-k8s
 CERT_DIR=${REPO_DIR}/udf/certs
 
-NODES=( jumphost master1 node1 master2 node2 master3 node3 )
-K8S_NODES=( master1 node1 master2 node2 master3 node3 )
+NODES=( jumphost master1 node11 node12 master2 node21 node22 )
+K8S_NODES=( master1 node11 node12 master2 node21 node22 )
 
 
 function do_nodes {

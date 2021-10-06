@@ -9,8 +9,8 @@ K9S_VERSION=v0.24.15
 INVENTORY_DIR_1=${ROOT_DIR}/udf/kubespray/inventory/cluster1
 INVENTORY_DIR_2=${ROOT_DIR}/udf/kubespray/inventory/cluster2
 
-ALL_NODES=( jumphost master1 node1 master2 node2 master3 node3 )
-ALL_K8S_NODES=( master1 node1 master2 node2 master3 node3 )
+ALL_NODES=( jumphost master1 node11 node12 master2 node21 node22 )
+ALL_K8S_NODES=( master1 node11 node12 master2 node21 node22 )
 
 HOME_DIR=/home/ubuntu
 REPO_DIR=${HOME_DIR}/udf-aspenmesh-k8s
