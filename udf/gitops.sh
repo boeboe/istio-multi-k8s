@@ -23,6 +23,7 @@ if [[ $1 = "install_gogs" ]]; then
   sudo mkdir -p ${GOGS_CONF_DIR}/custom/https
   sudo cp ${CERT_DIR}/wildcard/${DOMAIN}.key ${GOGS_CONF_DIR}/custom/https/key.pem
   sudo cp ${CERT_DIR}/wildcard/${DOMAIN}.pem ${GOGS_CONF_DIR}/custom/https/cert.pem
+  sudo mkdir -p ${GOGS_CONF_DIR}/custom/conf/
   sudo cp ${GOGS_DIR}/app.ini ${GOGS_CONF_DIR}/custom/conf/app.ini
   sudo chown -R git: ${GOGS_CONF_DIR}
   sudo cp ${GOGS_CONF_DIR}/scripts/systemd/gogs.service /etc/systemd/system/
