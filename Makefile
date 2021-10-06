@@ -64,8 +64,11 @@ hosts_reboot_k8s: ## Reboot all k8s nodes
 hosts_install_root_ca: ## Install Aspendemo Root CA on all nodes
 	./udf/nodes.sh install_root_ca
 
-nginx_jumphost: ## Refresh jumphost nginx configuration
-	./udf/nginx.sh jumphost
+nginx_install: ## Install nginx 
+	./udf/nginx.sh install
+
+nginx_config: ## Refresh nginx configuration
+	./udf/nginx.sh config
 
 nginx_status: ## Get nginx daemon status
 	./udf/nginx.sh status
