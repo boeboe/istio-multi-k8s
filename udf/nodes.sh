@@ -9,7 +9,7 @@ HOME_DIR=/home/ubuntu
 REPO_DIR=${HOME_DIR}/udf-istio-multi-k8s
 CERT_DIR=${REPO_DIR}/udf/certs
 
-NODES=( jumphost master1 node11 node12 master2 node21 node22 )
+NODES=( jumphost master1 node11 node12 master2 node21 node22 vm1 vm2 )
 K8S_NODES=( master1 node11 node12 master2 node21 node22 )
 
 
