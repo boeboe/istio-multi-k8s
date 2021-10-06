@@ -62,15 +62,21 @@ fi
 if [[ $1 = "kubeconfig" ]]; then
   ssh master1 "mkdir -p ${HOME_DIR}/.kube ; sudo cp /etc/kubernetes/admin.conf ${HOME_DIR}/.kube/config ; sudo chown -R ubuntu:ubuntu ${HOME_DIR}/.kube"
   scp master1:${HOME_DIR}/.kube/config /tmp/config1
-  ssh node1 "mkdir -p ${HOME_DIR}/.kube"
-  scp /tmp/config1 node1:${HOME_DIR}/.kube/config
-  ssh node1 "chmod 600 ${HOME_DIR}/.kube/config"
+  ssh node11 "mkdir -p ${HOME_DIR}/.kube"
+  scp /tmp/config1 node11:${HOME_DIR}/.kube/config
+  ssh node11 "chmod 600 ${HOME_DIR}/.kube/config"
+  ssh node12 "mkdir -p ${HOME_DIR}/.kube"
+  scp /tmp/config1 node12:${HOME_DIR}/.kube/config
+  ssh node12 "chmod 600 ${HOME_DIR}/.kube/config"
 
   ssh master2 "mkdir -p ${HOME_DIR}/.kube ; sudo cp /etc/kubernetes/admin.conf ${HOME_DIR}/.kube/config ; sudo chown -R ubuntu:ubuntu ${HOME_DIR}/.kube"
   scp master2:${HOME_DIR}/.kube/config /tmp/config2
-  ssh node2 "mkdir -p ${HOME_DIR}/.kube"
-  scp /tmp/config2 node2:${HOME_DIR}/.kube/config
-  ssh node2 "chmod 600 ${HOME_DIR}/.kube/config"
+  ssh node21 "mkdir -p ${HOME_DIR}/.kube"
+  scp /tmp/config2 node21:${HOME_DIR}/.kube/config
+  ssh node21 "chmod 600 ${HOME_DIR}/.kube/config"
+  ssh node22 "mkdir -p ${HOME_DIR}/.kube"
+  scp /tmp/config2 node22:${HOME_DIR}/.kube/config
+  ssh node22 "chmod 600 ${HOME_DIR}/.kube/config"
 
   exit 0
 fi
