@@ -22,15 +22,11 @@ if [[ $1 = "config" ]]; then
   sudo rm -rf /etc/nginx/conf.d/*.conf
   sudo cp ${NGINX_CONF_DIR}/jumphost/*-*.conf /etc/nginx/conf.d/
   sudo cp ${NGINX_CONF_DIR}/jumphost/nginx.conf /etc/nginx/nginx.conf
-  sudo systemctl enable nginx.service
-  sudo systemctl restart nginx.service
-  exit 0
-fi
-
-if [[ $1 = "certs" ]]; then
   sudo mkdir -p /etc/ssl/nginx
   sudo cp ${CERT_DIR}/wildcard/${DOMAIN}.key /etc/ssl/nginx/key.pem
   sudo cp ${CERT_DIR}/wildcard/${DOMAIN}.pem /etc/ssl/nginx/cert.pem
+  sudo systemctl enable nginx.service
+  sudo systemctl restart nginx.service
   exit 0
 fi
 
