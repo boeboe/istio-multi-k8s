@@ -13,8 +13,6 @@ kubernetes_install_cluster1: ## Install clean Kubernetes Cluster 1
 	./udf/kubernetes.sh install_cluster1
 kubernetes_install_cluster2: ## Install clean Kubernetes Cluster 2
 	./udf/kubernetes.sh install_cluster2
-kubernetes_install_cluster3: ## Install clean Kubernetes Cluster 3
-	./udf/kubernetes.sh install_cluster3
 
 kubernetes_k9s: ## Install k9s
 	./udf/kubernetes.sh k9s
@@ -29,8 +27,6 @@ kubernetes_remove_cluster1: ## Remove existing Kubernetes Cluster 1
 	./udf/kubernetes.sh remove_cluster1
 kubernetes_remove_cluster2: ## Remove existing Kubernetes Cluster 2
 	./udf/kubernetes.sh remove_cluster2
-kubernetes_remove_cluster3: ## Remove existing Kubernetes Cluster 3
-	./udf/kubernetes.sh remove_cluster3
 
 aspenmesh_install: ## Install clean Aspen Mesh
 	./udf/aspenmesh.sh install

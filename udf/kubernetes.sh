@@ -8,13 +8,9 @@ K9S_VERSION=v0.24.15
 
 INVENTORY_DIR_1=${ROOT_DIR}/udf/kubespray/inventory/cluster1
 INVENTORY_DIR_2=${ROOT_DIR}/udf/kubespray/inventory/cluster2
-INVENTORY_DIR_3=${ROOT_DIR}/udf/kubespray/inventory/cluster3
 
 ALL_NODES=( jumphost master1 node1 master2 node2 master3 node3 )
 ALL_K8S_NODES=( master1 node1 master2 node2 master3 node3 )
-ALL_K8S_1_NODES=( master1 node1 )
-ALL_K8S_2_NODES=( master2 node2 )
-ALL_K8S_3_NODES=( master3 node3 )
 
 HOME_DIR=/home/ubuntu
 REPO_DIR=${HOME_DIR}/udf-aspenmesh-k8s
@@ -54,15 +50,6 @@ if [[ $1 = "install_cluster2" ]]; then
   exit 0
 fi
 
-if [[ $1 = "install_cluster3" ]]; then
-  docker pull quay.io/kubespray/kubespray:${KUBESPRAY_VERSION}
-  docker run --rm -it --mount type=bind,source=${INVENTORY_DIR_3},dst=/inventory \
-    --mount type=bind,source="${HOME}"/.ssh/id_rsa,dst=/root/.ssh/id_rsa \
-    quay.io/kubespray/kubespray:${KUBESPRAY_VERSION} bash -c \
-    "ansible-playbook -i /inventory/inventory.ini --private-key /root/.ssh/id_rsa cluster.yml"
-  exit 0
-fi
-
 if [[ $1 = "k9s" ]]; then
   do_all_nodes "cd /tmp ; \
   curl -LO https://github.com/derailed/k9s/releases/download/${K9S_VERSION}/k9s_Linux_x86_64.tar.gz ; \
@@ -85,11 +72,6 @@ if [[ $1 = "kubeconfig" ]]; then
   scp /tmp/config2 node2:${HOME_DIR}/.kube/config
   ssh node2 "chmod 600 ${HOME_DIR}/.kube/config"
 
-  ssh master3 "mkdir -p ${HOME_DIR}/.kube ; sudo cp /etc/kubernetes/admin.conf ${HOME_DIR}/.kube/config ; sudo chown -R ubuntu:ubuntu ${HOME_DIR}/.kube"
-  scp master3:${HOME_DIR}/.kube/config /tmp/config3
-  ssh node3 "mkdir -p ${HOME_DIR}/.kube"
-  scp /tmp/config3 node3:${HOME_DIR}/.kube/config
-  ssh node3 "chmod 600 ${HOME_DIR}/.kube/config"
   exit 0
 fi
 
@@ -119,14 +101,5 @@ if [[ $1 = "remove_cluster2" ]]; then
   exit 0
 fi
 
-if [[ $1 = "remove_cluster3" ]]; then
-  docker pull quay.io/kubespray/kubespray:${KUBESPRAY_VERSION}
-  docker run --rm -it --mount type=bind,source=${INVENTORY_DIR_3},dst=/inventory \
-    --mount type=bind,source="${HOME}"/.ssh/id_rsa,dst=/root/.ssh/id_rsa \
-    quay.io/kubespray/kubespray:${KUBESPRAY_VERSION} bash -c  \
-    "ansible-playbook -i /inventory/inventory.ini --private-key /root/.ssh/id_rsa --become --become-user=root reset.yml"
-  exit 0
-fi
-
-echo "please specify action ./kubernetes.sh install_cluster1/install_cluster2/install_cluster3/k9s/kubeconfig/kubectl/remove_cluster1/remove_cluster2/remove_cluster3"
+echo "please specify action ./kubernetes.sh install_cluster1/install_cluster2/k9s/kubeconfig/kubectl/remove_cluster1/remove_cluster2"
 exit 1
