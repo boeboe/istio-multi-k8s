@@ -4,6 +4,8 @@ set -o xtrace
 ROOT_DIR=$(pwd)
 
 NGINX_CONF_DIR=${ROOT_DIR}/udf/nginx
+CERT_DIR=${ROOT_DIR}/udf/certs
+DOMAIN=aspendemo.org
 
 
 if [[ $1 = "install" ]]; then
@@ -22,6 +24,13 @@ if [[ $1 = "config" ]]; then
   sudo cp ${NGINX_CONF_DIR}/jumphost/nginx.conf /etc/nginx/nginx.conf
   sudo systemctl enable nginx.service
   sudo systemctl restart nginx.service
+  exit 0
+fi
+
+if [[ $1 = "certs" ]]; then
+  sudo mkdir -p /etc/ssl/nginx
+  sudo cp ${CERT_DIR}/wildcard/${DOMAIN}.key /etc/ssl/nginx/key.pem
+  sudo cp ${CERT_DIR}/wildcard/${DOMAIN}.pem /etc/ssl/nginx/cert.pem
   exit 0
 fi
 
