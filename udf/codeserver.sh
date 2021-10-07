@@ -4,7 +4,7 @@ set -o xtrace
 ROOT_DIR=$(pwd)
 
 HOME_DIR=/home/ubuntu
-REPO_DIR=${HOME_DIR}/udf-aspenmesh-k8s
+REPO_DIR=${HOME_DIR}/udf-istio-multi-k8s
 CONF_DIR=${REPO_DIR}/udf/codeserver
 
 if [[ $1 = "install" ]]; then
