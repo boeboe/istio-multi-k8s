@@ -103,6 +103,9 @@ spec:
           maxReplicas: 1
   profile: default
   values: 
+    gateways:
+      istio-ingressgateway:
+        injectionTemplate: gateway
     global: 
       meshID: mesh1
       multiCluster: 

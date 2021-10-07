@@ -58,7 +58,7 @@ spec:
         - name: ISTIO_META_ROUTER_MODE
           value: sni-dnat
         - name: ISTIO_META_REQUESTED_NETWORK_VIEW
-          value: network1
+          value: network2
         hpaSpec:
           minReplicas: 2
           maxReplicas: 3
@@ -83,7 +83,7 @@ spec:
       label: 
         app: istio-eastwestgateway
         istio: eastwestgateway
-        topology.istio.io/network: network1
+        topology.istio.io/network: network2
       name: istio-eastwestgateway
     pilot:
       enabled: true
@@ -103,6 +103,9 @@ spec:
           maxReplicas: 1
   profile: default
   values: 
+    gateways:
+      istio-ingressgateway:
+        injectionTemplate: gateway
     global: 
       meshID: mesh1
       multiCluster: 
