@@ -97,8 +97,8 @@ spec:
                   - istiod
               topologyKey: "kubernetes.io/hostname"
         hpaSpec:
-          minReplicas: 2
-          maxReplicas: 3
+          minReplicas: 1
+          maxReplicas: 1
   profile: default
   values: 
     global: 
