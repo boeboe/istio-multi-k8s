@@ -28,20 +28,8 @@ kubernetes_remove_cluster1: ## Remove existing Kubernetes Cluster 1
 kubernetes_remove_cluster2: ## Remove existing Kubernetes Cluster 2
 	./udf/kubernetes.sh remove_cluster2
 
-aspenmesh_install: ## Install clean Aspen Mesh
-	./udf/aspenmesh.sh install
-
-aspenmesh_update: ## Update existng Aspen Mesh
-	./udf/aspenmesh.sh update
-
-aspenmesh_remove: ## Remove existing Aspen Mesh
-	./udf/aspenmesh.sh remove
-
-aspenmesh_istioctl: ## Install Aspen Mesh matching istioctl
-	./udf/aspenmesh.sh istioctl
-
-aspenmesh_services: ## Expose Aspen Mesh services
-	./udf/aspenmesh.sh services
+istio_istioctl: ## Install Istio matching istioctl
+	./udf/istio.sh istioctl
 
 hosts_apt_install: ## Install packages on all nodes
 	./udf/nodes.sh apt_install
