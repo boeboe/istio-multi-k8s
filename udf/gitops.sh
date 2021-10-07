@@ -15,6 +15,9 @@ GOGS_CONF_DIR=/home/git/gogs
 GOGS_USER=aspenmesh
 GOGS_PASS=aspenmesh
 
+GITOPS_DIR=${REPO_DIR}/udf/gitops
+LOCAL_GITOPS_DIR=${HOME_DIR}/gitops
+
 if [[ $1 = "install_gogs" ]]; then
   sudo apt-get -y install sqlite3
   sudo adduser --system --group --disabled-password --shell /bin/bash --home /home/git --gecos 'Git Version Control' git
@@ -34,12 +37,11 @@ if [[ $1 = "install_gogs" ]]; then
   exit 0
 fi
 
-if [[ $1 = "install_flux" ]]; then
-  curl -s https://fluxcd.io/install.sh | sudo bash
-  flux bootstrap git --url=ssh://git@gogs.aspendemo.org:aspenmesh/flux-system.git --branch=master --private-key-file=/home/ubuntu/.ssh/id_rsa
-  curl https://github.com/fluxcd/webui/releases/download/v0.1.1/flux-webui_0.1.1_linux_amd64.tar.gz -o /tmp/flux-webui.tar.gz
+if [[ $1 = "sync_repo" ]]; then
+  cp -r ${GITOPS_DIR}/* ${LOCAL_GITOPS_DIR}/
   exit 0
 fi
 
-echo "please specify action ./gitops.sh install_gogs/install_flux"
+
+echo "please specify action ./gitops.sh install_gogs/sync_repo"
 exit 1

@@ -73,6 +73,9 @@ dns_hosts: ## Update /etc/hosts file for dnsmasq server
 gogs_install: ## Install Gogs as Git Server
 	./udf/gitops.sh install_gogs
 
+gitops_sync: ## Sync upstream gitops repos with local repos
+	./udf/gitops.sh sync_repo
+
 codeserver_install: ## Install Code Server as HTTP based Editor
 	./udf/codeserver.sh install
 
