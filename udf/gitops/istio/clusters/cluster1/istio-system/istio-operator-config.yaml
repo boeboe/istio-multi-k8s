@@ -64,6 +64,8 @@ spec:
           maxReplicas: 3
         service: 
           loadBalancerIP: 10.1.1.52
+          externalIPs:
+            - 10.1.1.52
           ports:
           - name: status-port
             port: 15021
