@@ -9,7 +9,7 @@ CONF_DIR=${REPO_DIR}/udf/codeserver
 
 if [[ $1 = "install" ]]; then
   curl -fsSL https://code-server.dev/install.sh | sh
-  cp ${CONF_DIR}/config.yam /home/ubuntu/.config/code-server/config.yaml
+  cp ${CONF_DIR}/config.yaml /home/ubuntu/.config/code-server/config.yaml
   sudo systemctl enable code-server@$USER
   sudo systemctl restart code-server@$USER
   exit 0
