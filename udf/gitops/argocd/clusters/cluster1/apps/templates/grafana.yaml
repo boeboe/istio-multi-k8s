@@ -11,7 +11,7 @@ spec:
     namespace: istio-system
   project: default
   source:
-    chart: grafana/grafana
+    chart: grafana
     helm:
       values: |
         service:
@@ -20,7 +20,7 @@ spec:
         persistence:
           enabled: true
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: grafana-6.16.11
+    targetRevision: 6.16.11
   syncPolicy:
     automated:
       prune: true
