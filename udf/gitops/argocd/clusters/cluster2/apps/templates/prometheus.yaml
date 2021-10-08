@@ -17,6 +17,7 @@ spec:
         pushgateway:
           enabled: false
         server:
+          fullname: prometheus
           service:
             loadBalancerIP: "10.1.1.104"
             type: LoadBalancer 
