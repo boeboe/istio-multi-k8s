@@ -26,6 +26,8 @@ spec:
             external_services:
               prometheus:
                 url: "http://prometheus.istio-system.svc.cluster.local:80"
+              grafana:
+                url: "http://grafana.cluster2.aspendemo.org"
     repoURL: https://kiali.org/helm-charts
     targetRevision: v1.41.0
   syncPolicy:

@@ -23,9 +23,11 @@ spec:
             deployment:
               service_type: LoadBalancer
               additional_service_yaml: { "loadBalancerIP": "10.1.1.53" }
-            external_services:  
+            external_services:
               prometheus:
                 url: "http://prometheus.istio-system.svc.cluster.local:80"
+              grafana:
+                url: "http://grafana.cluster1.aspendemo.org"
     repoURL: https://kiali.org/helm-charts
     targetRevision: v1.41.0
   syncPolicy:
