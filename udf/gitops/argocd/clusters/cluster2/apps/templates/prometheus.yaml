@@ -14,10 +14,10 @@ spec:
     chart: prometheus
     helm:
       values: |
-        fullnameOverride: prometheus
         pushgateway:
           enabled: false
         server:
+          fullnameOverride: prometheus
           service:
             loadBalancerIP: "10.1.1.104"
             type: LoadBalancer 
