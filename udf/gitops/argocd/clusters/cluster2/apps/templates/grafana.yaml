@@ -14,11 +14,22 @@ spec:
     chart: grafana
     helm:
       values: |
+        adminUser: admin
+        adminPassword: admin
+        datasources:
+          datasources.yaml:
+            apiVersion: 1
+            datasources:
+              - name: Prometheus
+                type: prometheus
+                url: http://prometheus.istio-system.svc.cluster.local:80
+                access: proxy
+                isDefault: true
+        persistence:
+          enabled: true
         service:
           loadBalancerIP: "10.1.1.105"
           type: LoadBalancer
-        persistence:
-          enabled: true
     repoURL: https://grafana.github.io/helm-charts
     targetRevision: 6.16.11
   syncPolicy:
