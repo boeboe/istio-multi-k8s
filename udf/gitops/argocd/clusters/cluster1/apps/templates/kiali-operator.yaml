@@ -23,6 +23,8 @@ spec:
             deployment:
               service_type: LoadBalancer
               additional_service_yaml: { "loadBalancerIP": "10.1.1.53" }
+            prometheus:
+              url: "http://prometheus-server.istio-system.svc.cluster.local:9090"
     repoURL: https://kiali.org/helm-charts
     targetRevision: v1.41.0
   syncPolicy:
