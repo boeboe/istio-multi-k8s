@@ -3,7 +3,14 @@ kind: IstioOperator
 metadata: 
   name: istiocontrolplane
   namespace: istio-system
-spec: 
+spec:
+  addonComponents:
+    prometheus:
+      enabled: true
+      k8s:
+        service: 
+          loadBalancerIP: 10.1.1.54
+          type: LoadBalancer
   components: 
     egressGateways: 
     - enabled: true
