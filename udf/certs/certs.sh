@@ -53,11 +53,6 @@ if [[ $1 = "print-cluster2" ]]; then
 	exit 0
 fi
 
-if [[ $1 = "print-cluster3" ]]; then
-  openssl x509 -in ./cluster3/ca-cert.pem -text
-	exit 0
-fi
-
 if [[ $1 = "print-wildcard" ]]; then
   openssl x509 -in ./wildcard/${DOMAIN}.pem -text
   openssl x509 -in ./wildcard/${DOMAIN}-bundle.pem -text
