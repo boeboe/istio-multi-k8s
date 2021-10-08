@@ -31,12 +31,16 @@ ff02::3 ip6-allhosts
 10.1.1.51  istio-igw.cluster1
 10.1.1.53  kiali1
 10.1.1.53  kiali.cluster1
+10.1.1.54  prometeus1
+10.1.1.54  prometeus.cluster1
 10.1.1.100 argocd2
 10.1.1.100 argocd.cluster2
 10.1.1.101 istio-igw2
 10.1.1.101 istio-igw.cluster2
-10.1.1.103  kiali2
-10.1.1.103  kiali.cluster2
+10.1.1.103 kiali2
+10.1.1.103 kiali.cluster2
+10.1.1.104 prometeus2
+10.1.1.104 prometeus.cluster2
 
 # DNSMasq entries for Istio workloads (exposed through the istio-ingressgateway)
 # 10.1.1.50 httpbin-01
