@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kiali-operator
+  namespace: default
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: istio-system
+  project: default
+  source:
+    chart: kiali-operator
+    helm:
+      values: |
+        cr:
+          create: true
+          namespace: istio-system
+          deployment:
+            service_type: LoadBalancer
+            additional_service_yaml: { "loadBalancerIP": "10.1.1.103" }
+    repoURL: https://kiali.org/helm-charts
+    targetRevision: v1.41.0
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
