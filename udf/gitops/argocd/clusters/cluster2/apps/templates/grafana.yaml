@@ -18,10 +18,44 @@ spec:
         adminPassword: admin
         dashboards:
           default:
+            kubernetes-cluster:
+              gnetId: 7249
+              datasource: Prometheus
+            kubernetes-cluster-monitoring-prometheus:
+              gnetId: 1621
+              datasource: Prometheus
             prometheus-stats:
               gnetId: 2
               revision: 2
               datasource: Prometheus
+            istio-mesh:
+              gnetId: 7639
+              datasource: Prometheus
+            istio-service:
+              gnetId: 7636
+              datasource: Prometheus
+            istio-workload:
+              gnetId: 7630
+              datasource: Prometheus
+            istio-performance:
+              gnetId: 11829
+              datasource: Prometheus
+            istio-controlplane:
+              gnetId: 7645
+              datasource: Prometheus
+        dashboardProviders:
+          dashboardproviders.yaml:
+            apiVersion: 1
+            providers:
+              - name: default
+                orgId: 1
+                folder: ""
+                type: file
+                disableDeletion: false
+                editable: false
+                options:
+                  path: /var/lib/grafana/dashboards/default
+        datasources:
           datasources.yaml:
             apiVersion: 1
             datasources:
