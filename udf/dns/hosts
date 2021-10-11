@@ -35,6 +35,8 @@ ff02::3 ip6-allhosts
 10.1.1.54  prometheus.cluster1
 10.1.1.55  grafana1
 10.1.1.55  grafana.cluster1
+10.1.1.56  loki1
+10.1.1.56  loki.cluster1
 10.1.1.100 argocd2
 10.1.1.100 argocd.cluster2
 10.1.1.101 istio-igw2
@@ -45,6 +47,8 @@ ff02::3 ip6-allhosts
 10.1.1.104 prometheus.cluster2
 10.1.1.105 grafana2
 10.1.1.105 grafana.cluster2
+10.1.1.106 loki2
+10.1.1.106 loki.cluster2
 
 # DNSMasq entries for Istio workloads (exposed through the istio-ingressgateway)
 # 10.1.1.50 httpbin-01
