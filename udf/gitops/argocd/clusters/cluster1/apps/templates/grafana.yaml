@@ -20,6 +20,7 @@ spec:
           default:
             kubernetes-cluster:
               gnetId: 7249
+              revision: 1
               datasource: Prometheus
             kubernetes-cluster-monitoring-prometheus:
               gnetId: 1621
@@ -30,18 +31,23 @@ spec:
               datasource: Prometheus
             istio-mesh:
               gnetId: 7639
+              revision: 92
               datasource: Prometheus
             istio-service:
               gnetId: 7636
+              revision: 92
               datasource: Prometheus
             istio-workload:
               gnetId: 7630
+              revision: 92
               datasource: Prometheus
             istio-performance:
               gnetId: 11829
+              revision: 92
               datasource: Prometheus
             istio-controlplane:
               gnetId: 7645
+              revision: 92
               datasource: Prometheus
         dashboardProviders:
           dashboardproviders.yaml:
