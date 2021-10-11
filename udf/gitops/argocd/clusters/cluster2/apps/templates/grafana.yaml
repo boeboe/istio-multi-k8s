@@ -76,7 +76,7 @@ spec:
           loadBalancerIP: "10.1.1.105"
           type: LoadBalancer
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 6.16.11
+    targetRevision: 6.16.13
   syncPolicy:
     automated:
       prune: true
