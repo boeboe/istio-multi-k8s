@@ -37,11 +37,16 @@ if [[ $1 = "install_gogs" ]]; then
   exit 0
 fi
 
+if [[ $1 = "install_argocd" ]]; then
+  
+  exit 0
+fi
+
 if [[ $1 = "sync_repo" ]]; then
   cp -r ${GITOPS_DIR}/* ${LOCAL_GITOPS_DIR}/
   exit 0
 fi
 
 
-echo "please specify action ./gitops.sh install_gogs/sync_repo"
+echo "please specify action ./gitops.sh install_gogs/install_argocd/sync_repo"
 exit 1
