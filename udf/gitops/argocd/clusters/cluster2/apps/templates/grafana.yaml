@@ -49,6 +49,10 @@ spec:
               gnetId: 7645
               revision: 92
               datasource: Prometheus
+            istio-loki:
+              gnetId: 14876
+              revision: 2
+              datasource: Loki
         dashboardProviders:
           dashboardproviders.yaml:
             apiVersion: 1
