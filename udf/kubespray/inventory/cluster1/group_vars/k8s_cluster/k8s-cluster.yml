@@ -255,6 +255,7 @@ podsecuritypolicy_enabled: false
 supplementary_addresses_in_ssl_keys:
   - apiserver.cluster1.aspendemo.org
   - apiserver1.aspendemo.org
+  - 10.1.1.5
 
 ## Running on top of openstack vms with cinder enabled may lead to unschedulable pods due to NoVolumeZoneConflict restriction in kube-scheduler.
 ## See https://github.com/kubernetes-sigs/kubespray/issues/2141
