@@ -24,10 +24,14 @@ spec:
               service_type: LoadBalancer
               additional_service_yaml: { "loadBalancerIP": "10.1.1.103" }
             external_services:
+              grafana:
+                auth:
+                  password: aspenmesh
+                  username: admin
+                in_cluster_url: "http://grafana.istio-system.svc.cluster.local:80"
+                url: "http://grafana.cluster2.aspendemo.org"
               prometheus:
                 url: "http://prometheus.istio-system.svc.cluster.local:80"
-              grafana:
-                url: "http://grafana.cluster2.aspendemo.org"
     repoURL: https://kiali.org/helm-charts
     targetRevision: v1.41.0
   syncPolicy:
