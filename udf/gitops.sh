@@ -38,7 +38,11 @@ if [[ $1 = "install_gogs" ]]; then
 fi
 
 if [[ $1 = "install_argocd" ]]; then
-  
+  kubectl --context=kubernetes-admin1@cluster1.local create ns argocd
+  kubectl --context=kubernetes-admin2@cluster2.local create ns argocd
+  helm --kube-context=kubernetes-admin1@cluster1.local --namespace argocd install argo-cd ${GITOPS_DIR}/argocd/clusters/cluster1/charts/argo-cd/
+  helm --kube-context=kubernetes-admin2@cluster2.local --namespace argocd install argo-cd ${GITOPS_DIR}/argocd/clusters/cluster2/charts/argo-cd/
+  helm install argo-cd charts/argo-cd/
   exit 0
 fi
 
