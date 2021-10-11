@@ -14,5 +14,6 @@ kubectl -n argocd patch secret argocd-secret \
 helm template apps/ | kubectl apply -n argocd -f -
 
 argocd login 10.1.1.50:443 --username admin --password admin
+argocd repo add git@gogs.aspendemo.org:aspenmesh/root.git --ssh-private-key-path ~/.ssh/id_rsa --insecure-ignore-host-key
 argocd repo add git@gogs.aspendemo.org:aspenmesh/istio.git --ssh-private-key-path ~/.ssh/id_rsa --insecure-ignore-host-key
 argocd repo add git@gogs.aspendemo.org:aspenmesh/helloworld.git --ssh-private-key-path ~/.ssh/id_rsa --insecure-ignore-host-key
