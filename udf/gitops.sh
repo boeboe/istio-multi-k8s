@@ -37,20 +37,11 @@ if [[ $1 = "install_gogs" ]]; then
   exit 0
 fi
 
-if [[ $1 = "install_argocd" ]]; then
-  kubectl --context=kubernetes-admin1@cluster1.local create ns argocd
-  kubectl --context=kubernetes-admin2@cluster2.local create ns argocd
-  helm --kube-context=kubernetes-admin1@cluster1.local --namespace argocd install argo-cd ${GITOPS_DIR}/argocd/clusters/cluster1/charts/argo-cd/
-  helm --kube-context=kubernetes-admin2@cluster2.local --namespace argocd install argo-cd ${GITOPS_DIR}/argocd/clusters/cluster2/charts/argo-cd/
-  helm install argo-cd charts/argo-cd/
-  exit 0
-fi
-
 if [[ $1 = "sync_repo" ]]; then
   cp -r ${GITOPS_DIR}/* ${LOCAL_GITOPS_DIR}/
   exit 0
 fi
 
 
-echo "please specify action ./gitops.sh install_gogs/install_argocd/sync_repo"
+echo "please specify action ./gitops.sh install_gogs/sync_repo"
 exit 1
