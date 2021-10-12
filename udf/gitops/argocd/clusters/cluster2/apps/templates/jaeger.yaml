@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jaeger
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: istio-system
+  project: default
+  source:
+    chart: jaeger
+    helm:
+      values: |
+        query:
+          service:
+            loadBalancerIP: "10.1.1.107"
+            type: LoadBalancer
+    repoURL: https://jaegertracing.github.io/helm-charts
+    targetRevision: 0.47.0
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
