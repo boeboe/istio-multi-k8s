@@ -48,8 +48,9 @@ spec:
               prometheus:
                 url: "http://prometheus.istio-system.svc.cluster.local:80"
               tracing:
-                in_cluster_url: "http://jaeger-collector.istio-system:14250"
+                in_cluster_url: "http://jaeger-collector.istio-system:14268/"
                 url: "http://jaeger2.aspendemo.org"
+                use_grpc: false
                 whitelist_istio_system: ["jaeger-query", "istio-ingressgateway", "istio-eastwestgateway", "istio-egressgateway"]
     repoURL: https://kiali.org/helm-charts
     targetRevision: v1.41.0
