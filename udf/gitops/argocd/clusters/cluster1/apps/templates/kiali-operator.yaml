@@ -24,6 +24,21 @@ spec:
               service_type: LoadBalancer
               additional_service_yaml: { "loadBalancerIP": "10.1.1.53" }
             external_services:
+              istio:
+                component_status:
+                  components:
+                  - app_label: istiod
+                    is_core: true
+                    is_proxy: false
+                  - app_label: istio-ingressgateway
+                    is_core: true
+                    is_proxy: true
+                  - app_label: istio-eastwestgateway
+                    is_core: false
+                    is_proxy: true
+                  - app_label: istio-egressgateway
+                    is_core: false
+                    is_proxy: true
               grafana:
                 auth:
                   password: aspenmesh
@@ -32,6 +47,10 @@ spec:
                 url: "http://grafana.cluster1.aspendemo.org"
               prometheus:
                 url: "http://prometheus.istio-system.svc.cluster.local:80"
+              tracing:
+                in_cluster_url: "http://jaeger-collector.istio-system:14250"
+                url: "http://jaeger.cluster1.aspendemo.org"
+                whitelist_istio_system: ["jaeger-query", "istio-ingressgateway", "istio-eastwestgateway", "istio-egressgateway"]
     repoURL: https://kiali.org/helm-charts
     targetRevision: v1.41.0
   syncPolicy:
