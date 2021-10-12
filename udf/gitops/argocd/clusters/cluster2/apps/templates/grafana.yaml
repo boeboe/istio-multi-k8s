@@ -80,6 +80,10 @@ spec:
                 url: http://prometheus.istio-system.svc.cluster.local:80
                 access: proxy
                 isDefault: true
+              - name: Tempo
+                type: tempo
+                access: proxy
+                url: http://tempo.istio-system.svc:3100
         persistence:
           enabled: true
         service:

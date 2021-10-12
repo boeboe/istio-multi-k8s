@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: opentelemetry-collector
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: istio-system
+  project: default
+  source:
+    chart: opentelemetry-collector
+    helm:
+      values: |
+        config:
+          receivers:
+            zipkin:
+              endpoint: 0.0.0.0:9411
+          exporters:
+            zipkin:
+              endpoint: jaeger-collector.istio-system.svc:9411
+              insecure: true
+            otlp:
+              endpoint: tempo.istio-system.svc.cluster.local:55680
+              insecure: true
+          service:
+            pipelines:
+              metrics: null
+              traces:
+                receivers:
+                  - zipkin
+                exporters:
+                  - zipkin
+                  - otlp
+    repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
+    targetRevision: 0.6.0
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

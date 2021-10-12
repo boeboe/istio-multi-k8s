@@ -111,7 +111,8 @@ spec:
         sampling: 100
         max_path_tag_length: 99999
         zipkin:
-          address: jaeger-collector.istio-system.svc:9411
+          address: otel-collector.istio-system.svc:9411
+          # address: jaeger-collector.istio-system.svc:9411
   profile: default
   values: 
     gateways:

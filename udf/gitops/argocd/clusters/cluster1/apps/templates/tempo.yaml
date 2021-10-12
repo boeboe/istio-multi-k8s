@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tempo
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: istio-system
+  project: default
+  source:
+    chart: tempo
+    helm:
+      values: |
+        persistence:
+          enabled: true
+        tempo:
+          extraArgs:
+            "distributor.log-received-traces": true
+          receivers:
+            zipkin:
+            otlp:
+              protocols:
+                http:
+                grpc:
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 0.7.7
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
