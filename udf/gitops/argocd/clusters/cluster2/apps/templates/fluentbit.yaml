@@ -24,7 +24,7 @@ spec:
                 Parsers_File custom_parsers.conf
                 HTTP_Server On
                 HTTP_Listen 0.0.0.0
-                HTTP_Port {{ .Values.service.port }}
+                HTTP_Port 2020
           inputs: |
             [INPUT]
                 Name tail
