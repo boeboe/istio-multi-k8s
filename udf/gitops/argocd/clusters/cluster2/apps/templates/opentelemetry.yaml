@@ -24,9 +24,9 @@ spec:
               endpoint: 0.0.0.0:9411
           exporters:
             zipkin:
-              endpoint: jaeger-collector.istio-system.svc:9411/api/v2/spans
+              endpoint: jaeger-collector.istio-system.svc:9411
             otlp:
-              endpoint: tempo.istio-system.svc:55681
+              endpoint: tempo.istio-system.svc:55680
               insecure: true
           service:
             pipelines:
