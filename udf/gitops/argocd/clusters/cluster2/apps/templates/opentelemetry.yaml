@@ -23,7 +23,7 @@ spec:
               endpoint: jaeger-collector.istio-system.svc:9411
               insecure: true
             otlp:
-              endpoint: tempo.istio-system.svc.cluster.local:55681
+              endpoint: tempo.istio-system.svc:55681
               insecure: true
           service:
             pipelines:
