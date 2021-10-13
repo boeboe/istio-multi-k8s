@@ -15,7 +15,7 @@ spec:
     helm:
       values: |
         adminUser: admin
-        adminPassword: admin
+        adminPassword: aspenmesh
         dashboards:
           default:
             kubernetes-cluster:
@@ -74,7 +74,12 @@ spec:
                 url: http://loki.istio-system.svc.cluster.local:3100
                 access: proxy
                 jsonData:
-                  maxLines: 1000
+                  derivedFields:
+                    - datasourceName: Tempo
+                      matcherRegex: "traceID=(\\w+)"
+                      name: TraceID
+                      url: "$${__value.raw}"
+                      datasourceUid: tempo
               - name: Prometheus
                 type: prometheus
                 url: http://prometheus.istio-system.svc.cluster.local:80
