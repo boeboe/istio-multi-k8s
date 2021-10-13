@@ -73,6 +73,8 @@ spec:
                 type: loki
                 url: http://loki.istio-system.svc.cluster.local:3100
                 access: proxy
+                orgId: 1
+                uid: loki
                 jsonData:
                   derivedFields:
                     - datasourceName: Tempo
@@ -80,15 +82,21 @@ spec:
                       name: TraceID
                       url: "$${__value.raw}"
                       datasourceUid: tempo
+                isDefault: false
               - name: Prometheus
                 type: prometheus
                 url: http://prometheus.istio-system.svc.cluster.local:80
                 access: proxy
+                orgId: 1
+                uid: prometheus
                 isDefault: true
               - name: Tempo
                 type: tempo
-                access: proxy
                 url: http://tempo.istio-system.svc:3100
+                access: proxy
+                orgId: 1
+                uid: tempo
+                isDefault: false
         persistence:
           enabled: true
         service:
