@@ -17,10 +17,8 @@ spec:
         config:
           receivers:
             zipkin:
-              protocols:
-                http:
-                  endpoint: 0.0.0.0:9411
-                  enabled: true
+              endpoint: 0.0.0.0:9411
+              enabled: true
           exporters:
             zipkin:
               endpoint: jaeger-collector.istio-system.svc:9411/api/v2/spans
