@@ -14,14 +14,16 @@ spec:
     chart: jaeger
     helm:
       values: |
-        query:
-          service:
-            loadBalancerIP: "10.1.1.57"
-            type: LoadBalancer
+        agent:
+          fullnameOverride: jaeger-agents
         collector:
           service:
             zipkin:
               port: 9411
+        query:
+          service:
+            loadBalancerIP: "10.1.1.57"
+            type: LoadBalancer
     repoURL: https://jaegertracing.github.io/helm-charts
     targetRevision: 0.47.0
   syncPolicy:
