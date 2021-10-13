@@ -24,7 +24,7 @@ spec:
               endpoint: 0.0.0.0:9411
           exporters:
             zipkin:
-              endpoint: jaeger-collector.istio-system.svc:9411
+              endpoint: http://jaeger-collector.istio-system.svc:9411
             otlp:
               endpoint: tempo.istio-system.svc:55680
               insecure: true
