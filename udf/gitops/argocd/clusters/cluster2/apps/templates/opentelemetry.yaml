@@ -17,11 +17,13 @@ spec:
         config:
           receivers:
             zipkin:
-              endpoint: 0.0.0.0:9411
+              protocols:
+                http:
+                  endpoint: 0.0.0.0:9411
+                  enabled: true
           exporters:
             zipkin:
-              endpoint: jaeger-collector.istio-system.svc:9411
-              insecure: true
+              endpoint: jaeger-collector.istio-system.svc:9411/api/v2/spans
             otlp:
               endpoint: tempo.istio-system.svc:55681
               insecure: true
